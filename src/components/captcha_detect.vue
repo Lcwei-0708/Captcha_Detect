@@ -40,7 +40,7 @@
             <h3>測試用驗證碼</h3>
             <div class="slider">
                 <div class="slides">
-                    <div class="slide" v-for="(image, index) in testImages" :key="index">
+                    <div class="slide" v-for="(image, index) in testImages" :key="index" @click="handleTestImageClick(image.src)">
                         <img :src="image.src" :alt="image.alt" />
                     </div>
                 </div>
@@ -200,6 +200,16 @@ export default {
                         }
                     }
                 });
+            }
+        },
+        async handleTestImageClick(imageSrc) {
+            try {
+                const response = await fetch(imageSrc);
+                const blob = await response.blob();
+                const file = new File([blob], "test-image.png", { type: blob.type });
+                this.processImage(file);
+            } catch (error) {
+                console.error("處理測試圖片時發生錯誤:", error);
             }
         },
     },
@@ -383,7 +393,7 @@ h3 {
 .slide {
     flex: 0 0 auto;
     width: 10%;
-    /* 根據圖片數量設置寬度，4張圖片則設置為25% */
+    cursor: pointer; /* 添加這行以顯示可點擊的效果 */
 }
 
 .slide img {
