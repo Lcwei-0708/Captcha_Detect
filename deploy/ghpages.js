@@ -10,7 +10,7 @@ const __dirname = path.dirname(__filename);
 
 const options = {
     branch: 'gh-pages',
-    repo: 'https://github.com/Lcwei-0708/Earthquake_Visualization.git'
+    repo: 'https://github.com/Lcwei-0708/Captcha_Detect.git'
 };
 
 const callback = err => {

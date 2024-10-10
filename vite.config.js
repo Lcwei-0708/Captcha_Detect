@@ -9,8 +9,8 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '')
 
   return {
-    base: '/Earthquake_Visualization/', // 設置為你的 GitHub Pages 路徑    
-    publicPath: '/earthquake-visualization',
+    base: '/Captcha_Detect/', // 設置為你的 GitHub Pages 路徑    
+    publicPath: '/captcha-detect',
     plugins: [
       vue({
         include: [/\.vue$/],
