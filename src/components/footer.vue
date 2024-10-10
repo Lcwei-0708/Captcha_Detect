@@ -1,6 +1,5 @@
 <template>
     <footer class="footer">
-        <p>資料來源：中央氣象署</p>
         <div class="container">
             <div class="copyright">
                 &copy; Copyright <strong><span>Cheng-Wei Lin</span></strong>
