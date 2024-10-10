@@ -50,7 +50,7 @@
 </template>
 
 <script>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, onUnmounted } from "vue";
 
 export default {
     name: "CaptchaDetect",
@@ -184,6 +184,30 @@ export default {
             this.resultVisible = false;
             this.$refs.fileInput.value = "";
         },
+        handleKeyDown(event) {
+            if (event.ctrlKey && event.key === 'v') {
+                event.preventDefault();
+                navigator.clipboard.read().then((clipboardItems) => {
+                    for (const clipboardItem of clipboardItems) {
+                        for (const type of clipboardItem.types) {
+                            if (type.startsWith('image/')) {
+                                clipboardItem.getType(type).then((blob) => {
+                                    const file = new File([blob], "pasted-image.png", { type: blob.type });
+                                    this.processImage(file);
+                                });
+                                return;
+                            }
+                        }
+                    }
+                });
+            }
+        },
+    },
+    mounted() {
+        document.addEventListener('keydown', this.handleKeyDown);
+    },
+    unmounted() {
+        document.removeEventListener('keydown', this.handleKeyDown);
     },
 };
 </script>
