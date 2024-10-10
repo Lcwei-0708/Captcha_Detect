@@ -5,7 +5,7 @@
                 &copy; Copyright <strong><span>Cheng-Wei Lin</span></strong>
             </div>
             <div class="footer-icon">
-                <a href="https://github.com/Lcwei-0708/Earthquake_Visualization" target="_blank">
+                <a href="https://github.com/Lcwei-0708/Captcha_Detect" target="_blank">
                     <iconify-icon icon="mdi:github" class="icon"></iconify-icon>
                 </a>
             </div>
