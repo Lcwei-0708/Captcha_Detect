@@ -182,7 +182,7 @@ export default {
             this.imgVisible = false;
             this.captcha = "";
             this.resultVisible = false;
-            this.$refs.fileInput.value = ""; // 清除文件輸入
+            this.$refs.fileInput.value = "";
         },
     },
 };
@@ -206,9 +206,9 @@ export default {
 }
 
 .input_img {
-    max-width: 300px;
-    width: 300px;
     height: auto;
+    max-width: 300px;
+    max-height: 15vh;
     margin-top: 30px;
     border-radius: 0.5rem;
     border: 1px solid var(--font2-color);
@@ -251,6 +251,7 @@ export default {
 .copy-btn.disabled {
     background-color: transparent;
     cursor: default;
+    color: var(--font2-color);
 }
 
 .result {
@@ -264,6 +265,7 @@ export default {
 }
 
 h2 {
+    background-color: var(--bg4-color);
     color: var(--font-color);
     margin-top: 80px;
 }
@@ -454,11 +456,6 @@ h3 {
 
     .img-container {
         flex-direction: column;
-    }
-
-    .input_img {
-        width: 80vw;
-        margin: auto;
     }
 }
 </style>
