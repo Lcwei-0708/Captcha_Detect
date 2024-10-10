@@ -1,12 +1,12 @@
-from flask import Flask, request, jsonify
-from flask_cors import CORS
-from PIL import Image
-import ddddocr
-import logging
 import io
 import os
-from werkzeug.middleware.proxy_fix import ProxyFix
+import ddddocr
+import logging
+from PIL import Image
+from flask_cors import CORS
 from datetime import datetime
+from flask import Flask, request, jsonify
+from werkzeug.middleware.proxy_fix import ProxyFix
 
 app = Flask(__name__)
 
@@ -20,7 +20,7 @@ app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_proto=1, x_host=1, x_prefix=1)
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
-# 初始化 ddddocr
+# 初始化 ddddocrS
 ocr = ddddocr.DdddOcr(show_ad=False)
 
 # 設置允許的文件類型
