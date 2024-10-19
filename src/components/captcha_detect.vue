@@ -491,5 +491,9 @@ h3 {
     .img-container {
         flex-direction: column;
     }
+
+    .test-container {
+        bottom: 10%;
+    }
 }
 </style>
