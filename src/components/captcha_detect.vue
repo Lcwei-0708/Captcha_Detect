@@ -134,7 +134,7 @@ export default {
                 const formData = new FormData();
                 formData.append("image", file);
 
-                const response = await fetch("https://api.lcwei.site/api/captcha_ocr", {
+                const response = await fetch("https://demo.cwei.dev/api/captcha_ocr/detect", {
                     method: "POST",
                     body: formData,
                 });
@@ -145,11 +145,11 @@ export default {
 
                 const data = await response.json();
 
-                if (data.error) {
-                    throw new Error(data.error);
+                if (data.code !== 200) {
+                    throw new Error(data.message || "API 錯誤");
                 }
 
-                this.captcha = data.result;
+                this.captcha = data.data.result;
                 this.resultVisible = true;
             } catch (error) {
                 console.error("驗證碼辨識過程中發生錯誤:", error);
