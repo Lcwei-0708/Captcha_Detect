@@ -145,6 +145,9 @@ export default {
 
                 const data = await response.json();
 
+                if (data.code === 429) {
+                    throw new Error("請求太多次，請稍後再嘗試");
+                }
                 if (data.code !== 200) {
                     throw new Error(data.message || "API 錯誤");
                 }
