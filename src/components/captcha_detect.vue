@@ -140,23 +140,28 @@ export default {
                 });
 
                 if (!response.ok) {
-                    throw new Error(response.statusText);
+                    if (response.status === 429) {
+                        console.error("請求太多次，請稍後再嘗試");
+                        this.captcha = "請求太多次，請稍後再嘗試";
+                        this.resultVisible = true;
+                        return;
+                    }
+                    else {
+                        throw new Error(response.statusText);
+                    }
                 }
 
                 const data = await response.json();
-
-                if (data.code === 429) {
-                    throw new Error("請求太多次，請稍後再嘗試");
-                }
-                if (data.code !== 200) {
-                    throw new Error(data.message || "API 錯誤");
-                }
 
                 this.captcha = data.data.result;
                 this.resultVisible = true;
             } catch (error) {
                 console.error("驗證碼辨識過程中發生錯誤:", error);
-                this.captcha = "驗證碼偵測失敗";
+                if (error.message.includes("請求太多次，請稍後再嘗試")) {
+                    this.captcha = "請求太多次，請稍後再嘗試";
+                } else {
+                    this.captcha = error.message || "驗證碼偵測失敗";
+                }
                 this.resultVisible = true;
             } finally {
                 this.isLoading = false;
